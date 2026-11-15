@@ -1,0 +1,12 @@
+# Infinity data source: reads JSON from a URL. Grafana serves public/garmin.json itself (see docker-compose.yml).
+apiVersion: 1
+datasources:
+  - name: Garmin JSON
+    uid: garmin-json
+    type: yesoreyeram-infinity-datasource
+    access: proxy
+    isDefault: true
+    editable: false
+    jsonData:
+      allowedHosts:
+        - http://localhost:3000

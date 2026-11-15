@@ -1,0 +1,1424 @@
+{
+  "uid": "garmin-health",
+  "title": "Garmin Health",
+  "tags": [
+    "garmin"
+  ],
+  "timezone": "browser",
+  "editable": false,
+  "graphTooltip": 1,
+  "refresh": "5m",
+  "time": {
+    "from": "now-30d",
+    "to": "now"
+  },
+  "schemaVersion": 39,
+  "version": 1,
+  "description": "Reads public/garmin.json (written by npm run fetch and on npm run dev) through the Infinity data source.",
+  "links": [],
+  "templating": {
+    "list": []
+  },
+  "annotations": {
+    "list": []
+  },
+  "panels": [
+    {
+      "id": 1,
+      "type": "stat",
+      "title": "Sleep score",
+      "description": "",
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "garmin-json"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 0,
+        "w": 4,
+        "h": 4
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "garmin-json"
+          },
+          "type": "json",
+          "source": "url",
+          "format": "timeseries",
+          "parser": "backend",
+          "url": "http://localhost:3000/public/garmin/garmin.json",
+          "url_options": {
+            "method": "GET",
+            "data": ""
+          },
+          "root_selector": "days",
+          "columns": [
+            {
+              "selector": "date",
+              "text": "Time",
+              "type": "timestamp"
+            },
+            {
+              "selector": "sleepScore",
+              "text": "Sleep score",
+              "type": "number"
+            }
+          ],
+          "filters": []
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "none",
+          "decimals": 0,
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 60
+              },
+              {
+                "color": "green",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "colorMode": "value",
+        "graphMode": "area",
+        "textMode": "value",
+        "justifyMode": "center",
+        "wideLayout": true
+      }
+    },
+    {
+      "id": 2,
+      "type": "stat",
+      "title": "HRV",
+      "description": "",
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "garmin-json"
+      },
+      "gridPos": {
+        "x": 4,
+        "y": 0,
+        "w": 4,
+        "h": 4
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "garmin-json"
+          },
+          "type": "json",
+          "source": "url",
+          "format": "timeseries",
+          "parser": "backend",
+          "url": "http://localhost:3000/public/garmin/garmin.json",
+          "url_options": {
+            "method": "GET",
+            "data": ""
+          },
+          "root_selector": "days",
+          "columns": [
+            {
+              "selector": "date",
+              "text": "Time",
+              "type": "timestamp"
+            },
+            {
+              "selector": "hrv",
+              "text": "HRV",
+              "type": "number"
+            }
+          ],
+          "filters": []
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "ms",
+          "decimals": 0,
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "text",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "colorMode": "value",
+        "graphMode": "area",
+        "textMode": "value",
+        "justifyMode": "center",
+        "wideLayout": true
+      }
+    },
+    {
+      "id": 3,
+      "type": "stat",
+      "title": "Resting HR",
+      "description": "",
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "garmin-json"
+      },
+      "gridPos": {
+        "x": 8,
+        "y": 0,
+        "w": 4,
+        "h": 4
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "garmin-json"
+          },
+          "type": "json",
+          "source": "url",
+          "format": "timeseries",
+          "parser": "backend",
+          "url": "http://localhost:3000/public/garmin/garmin.json",
+          "url_options": {
+            "method": "GET",
+            "data": ""
+          },
+          "root_selector": "days",
+          "columns": [
+            {
+              "selector": "date",
+              "text": "Time",
+              "type": "timestamp"
+            },
+            {
+              "selector": "restingHr",
+              "text": "Resting HR",
+              "type": "number"
+            }
+          ],
+          "filters": []
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "bpm",
+          "decimals": 0,
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "text",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "colorMode": "value",
+        "graphMode": "area",
+        "textMode": "value",
+        "justifyMode": "center",
+        "wideLayout": true
+      }
+    },
+    {
+      "id": 4,
+      "type": "stat",
+      "title": "Body Battery",
+      "description": "",
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "garmin-json"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 0,
+        "w": 4,
+        "h": 4
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "garmin-json"
+          },
+          "type": "json",
+          "source": "url",
+          "format": "timeseries",
+          "parser": "backend",
+          "url": "http://localhost:3000/public/garmin/garmin.json",
+          "url_options": {
+            "method": "GET",
+            "data": ""
+          },
+          "root_selector": "days",
+          "columns": [
+            {
+              "selector": "date",
+              "text": "Time",
+              "type": "timestamp"
+            },
+            {
+              "selector": "bodyBattery",
+              "text": "Body Battery",
+              "type": "number"
+            }
+          ],
+          "filters": []
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "none",
+          "decimals": 0,
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 30
+              },
+              {
+                "color": "green",
+                "value": 60
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "colorMode": "value",
+        "graphMode": "area",
+        "textMode": "value",
+        "justifyMode": "center",
+        "wideLayout": true
+      }
+    },
+    {
+      "id": 5,
+      "type": "stat",
+      "title": "Stress",
+      "description": "",
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "garmin-json"
+      },
+      "gridPos": {
+        "x": 16,
+        "y": 0,
+        "w": 4,
+        "h": 4
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "garmin-json"
+          },
+          "type": "json",
+          "source": "url",
+          "format": "timeseries",
+          "parser": "backend",
+          "url": "http://localhost:3000/public/garmin/garmin.json",
+          "url_options": {
+            "method": "GET",
+            "data": ""
+          },
+          "root_selector": "days",
+          "columns": [
+            {
+              "selector": "date",
+              "text": "Time",
+              "type": "timestamp"
+            },
+            {
+              "selector": "stress",
+              "text": "Stress",
+              "type": "number"
+            }
+          ],
+          "filters": []
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "none",
+          "decimals": 0,
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "text",
+                "value": 26
+              },
+              {
+                "color": "orange",
+                "value": 51
+              },
+              {
+                "color": "red",
+                "value": 76
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "colorMode": "value",
+        "graphMode": "area",
+        "textMode": "value",
+        "justifyMode": "center",
+        "wideLayout": true
+      }
+    },
+    {
+      "id": 6,
+      "type": "stat",
+      "title": "Steps/day",
+      "description": "",
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "garmin-json"
+      },
+      "gridPos": {
+        "x": 20,
+        "y": 0,
+        "w": 4,
+        "h": 4
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "garmin-json"
+          },
+          "type": "json",
+          "source": "url",
+          "format": "timeseries",
+          "parser": "backend",
+          "url": "http://localhost:3000/public/garmin/garmin.json",
+          "url_options": {
+            "method": "GET",
+            "data": ""
+          },
+          "root_selector": "days",
+          "columns": [
+            {
+              "selector": "date",
+              "text": "Time",
+              "type": "timestamp"
+            },
+            {
+              "selector": "steps",
+              "text": "Steps",
+              "type": "number"
+            }
+          ],
+          "filters": []
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "locale",
+          "decimals": 0,
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "orange",
+                "value": null
+              },
+              {
+                "color": "text",
+                "value": 5000
+              },
+              {
+                "color": "green",
+                "value": 7500
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "colorMode": "value",
+        "graphMode": "area",
+        "textMode": "value",
+        "justifyMode": "center",
+        "wideLayout": true
+      }
+    },
+    {
+      "id": 7,
+      "type": "timeseries",
+      "title": "Sleep",
+      "description": "Hours per night. Dashed line: 7 h goal",
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "garmin-json"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 4,
+        "w": 12,
+        "h": 8
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "garmin-json"
+          },
+          "type": "json",
+          "source": "url",
+          "format": "timeseries",
+          "parser": "backend",
+          "url": "http://localhost:3000/public/garmin/garmin.json",
+          "url_options": {
+            "method": "GET",
+            "data": ""
+          },
+          "root_selector": "days",
+          "columns": [
+            {
+              "selector": "date",
+              "text": "Time",
+              "type": "timestamp"
+            },
+            {
+              "selector": "sleepMin",
+              "text": "Sleep (min)",
+              "type": "number"
+            }
+          ],
+          "filters": []
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "drawStyle": "bars",
+            "fillOpacity": 85,
+            "gradientMode": "none",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "showPoints": "never",
+            "spanNulls": false,
+            "barAlignment": 0,
+            "axisSoftMin": 0,
+            "thresholdsStyle": {
+              "mode": "dashed"
+            }
+          },
+          "decimals": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "transparent",
+                "value": null
+              },
+              {
+                "color": "#8e8e93",
+                "value": 7
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Sleep (min)"
+            },
+            "properties": [
+              {
+                "id": "custom.hideFrom",
+                "value": {
+                  "viz": true,
+                  "legend": true,
+                  "tooltip": true
+                }
+              },
+              {
+                "id": "custom.axisPlacement",
+                "value": "hidden"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Sleep"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#7a6cf5"
+                }
+              },
+              {
+                "id": "unit",
+                "value": "h"
+              },
+              {
+                "id": "decimals",
+                "value": 1
+              },
+              {
+                "id": "custom.axisPlacement",
+                "value": "left"
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "interval": "1d",
+      "transformations": [
+        {
+          "id": "calculateField",
+          "options": {
+            "mode": "binary",
+            "alias": "Sleep",
+            "binary": {
+              "left": {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Sleep (min)"
+                }
+              },
+              "operator": "/",
+              "right": {
+                "fixed": "60"
+              }
+            },
+            "replaceFields": false
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "renameByName": {}
+          }
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "type": "timeseries",
+      "title": "Sleep score",
+      "description": "Garmin 0\u2013100. Dashed line: 80 (good)",
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "garmin-json"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 4,
+        "w": 12,
+        "h": 8
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "garmin-json"
+          },
+          "type": "json",
+          "source": "url",
+          "format": "timeseries",
+          "parser": "backend",
+          "url": "http://localhost:3000/public/garmin/garmin.json",
+          "url_options": {
+            "method": "GET",
+            "data": ""
+          },
+          "root_selector": "days",
+          "columns": [
+            {
+              "selector": "date",
+              "text": "Time",
+              "type": "timestamp"
+            },
+            {
+              "selector": "sleepScore",
+              "text": "Sleep score",
+              "type": "number"
+            }
+          ],
+          "filters": []
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "drawStyle": "line",
+            "fillOpacity": 12,
+            "gradientMode": "opacity",
+            "lineWidth": 2,
+            "pointSize": 5,
+            "showPoints": "always",
+            "spanNulls": false,
+            "barAlignment": 0,
+            "thresholdsStyle": {
+              "mode": "dashed"
+            }
+          },
+          "decimals": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "transparent",
+                "value": null
+              },
+              {
+                "color": "#8e8e93",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Sleep score"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#9085e9"
+                }
+              },
+              {
+                "id": "unit",
+                "value": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "interval": "1d"
+    },
+    {
+      "id": 9,
+      "type": "timeseries",
+      "title": "HRV & resting heart rate",
+      "description": "Overnight HRV (left) and resting HR (right)",
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "garmin-json"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 12,
+        "w": 12,
+        "h": 8
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "garmin-json"
+          },
+          "type": "json",
+          "source": "url",
+          "format": "timeseries",
+          "parser": "backend",
+          "url": "http://localhost:3000/public/garmin/garmin.json",
+          "url_options": {
+            "method": "GET",
+            "data": ""
+          },
+          "root_selector": "days",
+          "columns": [
+            {
+              "selector": "date",
+              "text": "Time",
+              "type": "timestamp"
+            },
+            {
+              "selector": "hrv",
+              "text": "HRV",
+              "type": "number"
+            },
+            {
+              "selector": "restingHr",
+              "text": "Resting HR",
+              "type": "number"
+            }
+          ],
+          "filters": []
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "drawStyle": "line",
+            "fillOpacity": 12,
+            "gradientMode": "opacity",
+            "lineWidth": 2,
+            "pointSize": 5,
+            "showPoints": "always",
+            "spanNulls": false,
+            "barAlignment": 0,
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 0
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "HRV"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#1baf7a"
+                }
+              },
+              {
+                "id": "unit",
+                "value": "ms"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Resting HR"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#eb6834"
+                }
+              },
+              {
+                "id": "unit",
+                "value": "bpm"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Resting HR"
+            },
+            "properties": [
+              {
+                "id": "custom.axisPlacement",
+                "value": "right"
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "interval": "1d"
+    },
+    {
+      "id": 10,
+      "type": "timeseries",
+      "title": "Body Battery & stress",
+      "description": "Daily Body Battery peak and average stress",
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "garmin-json"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 12,
+        "w": 12,
+        "h": 8
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "garmin-json"
+          },
+          "type": "json",
+          "source": "url",
+          "format": "timeseries",
+          "parser": "backend",
+          "url": "http://localhost:3000/public/garmin/garmin.json",
+          "url_options": {
+            "method": "GET",
+            "data": ""
+          },
+          "root_selector": "days",
+          "columns": [
+            {
+              "selector": "date",
+              "text": "Time",
+              "type": "timestamp"
+            },
+            {
+              "selector": "bodyBattery",
+              "text": "Body Battery",
+              "type": "number"
+            },
+            {
+              "selector": "stress",
+              "text": "Stress",
+              "type": "number"
+            }
+          ],
+          "filters": []
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "drawStyle": "line",
+            "fillOpacity": 12,
+            "gradientMode": "opacity",
+            "lineWidth": 2,
+            "pointSize": 5,
+            "showPoints": "always",
+            "spanNulls": false,
+            "barAlignment": 0,
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 0
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Body Battery"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#3987e5"
+                }
+              },
+              {
+                "id": "unit",
+                "value": "none"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Stress"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#c2417a"
+                }
+              },
+              {
+                "id": "unit",
+                "value": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "interval": "1d"
+    },
+    {
+      "id": 11,
+      "type": "timeseries",
+      "title": "Steps",
+      "description": "Daily total. Dashed line: 7,500",
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "garmin-json"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 20,
+        "w": 12,
+        "h": 8
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "garmin-json"
+          },
+          "type": "json",
+          "source": "url",
+          "format": "timeseries",
+          "parser": "backend",
+          "url": "http://localhost:3000/public/garmin/garmin.json",
+          "url_options": {
+            "method": "GET",
+            "data": ""
+          },
+          "root_selector": "days",
+          "columns": [
+            {
+              "selector": "date",
+              "text": "Time",
+              "type": "timestamp"
+            },
+            {
+              "selector": "steps",
+              "text": "Steps",
+              "type": "number"
+            }
+          ],
+          "filters": []
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "drawStyle": "bars",
+            "fillOpacity": 85,
+            "gradientMode": "none",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "showPoints": "never",
+            "spanNulls": false,
+            "barAlignment": 0,
+            "axisSoftMin": 0,
+            "thresholdsStyle": {
+              "mode": "dashed"
+            }
+          },
+          "decimals": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "transparent",
+                "value": null
+              },
+              {
+                "color": "#8e8e93",
+                "value": 7500
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Steps"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#2a78d6"
+                }
+              },
+              {
+                "id": "unit",
+                "value": "locale"
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "interval": "1d"
+    },
+    {
+      "id": 12,
+      "type": "timeseries",
+      "title": "Intensity minutes",
+      "description": "Daily moderate + 2\u00d7 vigorous minutes",
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "garmin-json"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 20,
+        "w": 12,
+        "h": 8
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "garmin-json"
+          },
+          "type": "json",
+          "source": "url",
+          "format": "timeseries",
+          "parser": "backend",
+          "url": "http://localhost:3000/public/garmin/garmin.json",
+          "url_options": {
+            "method": "GET",
+            "data": ""
+          },
+          "root_selector": "days",
+          "columns": [
+            {
+              "selector": "date",
+              "text": "Time",
+              "type": "timestamp"
+            },
+            {
+              "selector": "intensityMin",
+              "text": "Intensity min",
+              "type": "number"
+            }
+          ],
+          "filters": []
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "drawStyle": "bars",
+            "fillOpacity": 85,
+            "gradientMode": "none",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "showPoints": "never",
+            "spanNulls": false,
+            "barAlignment": 0,
+            "axisSoftMin": 0,
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 0
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Intensity min"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#eda100"
+                }
+              },
+              {
+                "id": "unit",
+                "value": "m"
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "interval": "1d"
+    },
+    {
+      "id": 13,
+      "type": "table",
+      "title": "Activities",
+      "description": "From the activities list in garmin.json",
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "garmin-json"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 28,
+        "w": 24,
+        "h": 8
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "garmin-json"
+          },
+          "type": "json",
+          "source": "url",
+          "format": "table",
+          "parser": "backend",
+          "url": "http://localhost:3000/public/garmin/garmin.json",
+          "url_options": {
+            "method": "GET",
+            "data": ""
+          },
+          "root_selector": "activities",
+          "columns": [
+            {
+              "selector": "date",
+              "text": "Date",
+              "type": "string"
+            },
+            {
+              "selector": "type",
+              "text": "Type",
+              "type": "string"
+            },
+            {
+              "selector": "durationMin",
+              "text": "Duration",
+              "type": "number"
+            },
+            {
+              "selector": "distanceKm",
+              "text": "Distance",
+              "type": "number"
+            },
+            {
+              "selector": "avgHr",
+              "text": "Avg HR",
+              "type": "number"
+            },
+            {
+              "selector": "calories",
+              "text": "Calories",
+              "type": "number"
+            }
+          ],
+          "filters": []
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Duration"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "m"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Distance"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "lengthkm"
+              },
+              {
+                "id": "decimals",
+                "value": 2
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Avg HR"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "bpm"
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "showHeader": true,
+        "sortBy": [
+          {
+            "displayName": "Date",
+            "desc": true
+          }
+        ]
+      }
+    }
+  ]
+}
