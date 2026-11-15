@@ -93,6 +93,7 @@ acts = {"id": pid[0], "type": "table", "title": "Activities", "description": "Fr
             {"matcher": {"id": "byName", "options": "Duration"}, "properties": [{"id": "unit", "value": "m"}]},
             {"matcher": {"id": "byName", "options": "Distance"}, "properties": [{"id": "unit", "value": "lengthkm"}, {"id": "decimals", "value": 2}]},
             {"matcher": {"id": "byName", "options": "Avg HR"}, "properties": [{"id": "unit", "value": "bpm"}]}]},
+        "transformations": [{"id": "organize", "options": {"indexByName": {"Date": 0, "Type": 1, "Duration": 2, "Distance": 3, "Avg HR": 4, "Calories": 5}}}],
         "options": {"showHeader": True, "sortBy": [{"displayName": "Date", "desc": True}]}}
 panels.append(acts)
 

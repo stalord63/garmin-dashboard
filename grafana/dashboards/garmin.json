@@ -1410,6 +1410,21 @@
           }
         ]
       },
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "indexByName": {
+              "Date": 0,
+              "Type": 1,
+              "Duration": 2,
+              "Distance": 3,
+              "Avg HR": 4,
+              "Calories": 5
+            }
+          }
+        }
+      ],
       "options": {
         "showHeader": true,
         "sortBy": [

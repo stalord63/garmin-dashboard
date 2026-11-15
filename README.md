@@ -62,6 +62,8 @@ npm run grafana        # start Grafana at http://localhost:3000 (first start dow
 npm run grafana:stop   # stop it
 ```
 
+![Grafana dashboard (sample data)](docs/grafana.png)
+
 Grafana reads the same `public/garmin.json`. Once it's running, it also appears in the dashboard's **Grafana** section, following the 7D/30D/90D switch. Viewing needs no login. The admin login is `admin` / `admin` unless you set `GRAFANA_ADMIN_PASSWORD` in `.env` before the first start. Grafana is only reachable from your own computer.
 
 ## How it works
